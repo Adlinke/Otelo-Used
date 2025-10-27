@@ -1,0 +1,22 @@
+name: SIM Usage Declaration Deployment
+
+on:
+  push:
+    paths:
+      - 'SIM-Usage-Declaration.md'
+
+jobs:
+  deploy-sim-declaration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log deployment timestamp
+        run: echo "SIM Usage Declaration deployed at $(date)" >> deployment.log
+
+      - name: Confirm authorship
+        run: echo "Author: Adila Linke" >> deployment.log
+
+      - name: Archive declaration
+        run: cp SIM-Usage-Declaration.md archive/SIM-Usage-Declaration-$(date +%Y%m%d).md
